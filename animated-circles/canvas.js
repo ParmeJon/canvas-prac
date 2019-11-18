@@ -27,17 +27,29 @@ window.addEventListener("load", () => {
             ctx.fill();
         }
 
+        this.checkStatus = function() {
+            if (innerWidth < this.x + radius - Math.abs(dx) ) {
+                return true
+            }
+            if (innerHeight < this.y + radius - Math.abs(dy)) {
+                return true
+            }
+            return false
+        }
+
         this.update = function() {
             if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
-              this.dx = -this.dx;
-              this.opacity = Math.random()
+                this.dx = -this.dx;
+                this.opacity = Math.random()
             }
             if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
-              this.dy = -this.dy;
-              this.opacity - Math.random()
+                this.dy = -this.dy;
+                this.opacity - Math.random()
             }
-
+            
+            this.pastX = this.x
             this.x += this.dx;
+            this.pastY = this.y
             this.y += this.dy;
             this.draw();
         }
@@ -59,9 +71,16 @@ window.addEventListener("load", () => {
         requestAnimationFrame(animate);
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         for (let i =0; i < circleArray.length; i++) {
+            if (circleArray[i].checkStatus()) {
+                circleArray.splice(i,1)
+            }
             circleArray[i].update();
         }
     }
     animate()
 
+        window.addEventListener("resize", () => {
+          canvas.height = window.innerHeight;
+          canvas.width = window.innerWidth;
+        });
 })
