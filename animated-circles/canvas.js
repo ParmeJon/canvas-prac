@@ -1,6 +1,16 @@
 window.addEventListener("load", () => {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+
+    canvas.addEventListener("click", drawCircle)
+
+    function drawCircle(e) {
+        let radius = Math.random() * 45;
+        let dx = (Math.random() - 0.5) * 3;
+        let dy = (Math.random() - 0.5) * 3;
+        let opacity = Math.random();
+        circleArray.push(new Circle(e.clientX, e.clientY, dx, dy, radius, opacity))
+    }
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
@@ -28,6 +38,7 @@ window.addEventListener("load", () => {
         }
 
         this.checkStatus = function() {
+            // Checks if bounce is stuck due to dx change changing back and forth 
             if (innerWidth < this.x + radius - Math.abs(dx) ) {
                 return true
             }
@@ -71,10 +82,10 @@ window.addEventListener("load", () => {
         requestAnimationFrame(animate);
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         for (let i =0; i < circleArray.length; i++) {
+            circleArray[i].update();
             if (circleArray[i].checkStatus()) {
                 circleArray.splice(i,1)
             }
-            circleArray[i].update();
         }
     }
     animate()
