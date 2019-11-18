@@ -54,8 +54,24 @@ window.addEventListener("load", () => {
     ctx.strokeStyle = "blue"
     ctx.stroke();
 
-    // Reset path
-    ctx.beginPath()
+
+
+    for (let i = 0; i < 100; i++) {
+        // Reset path
+        ctx.beginPath()
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        // Parameters
+        // x, y, radius, start angle (radians), end angle (radians), drawn counterclockwise?
+        ctx.arc(x, y, 30, 0, Math.PI * 2, false);
+        ctx.strokeStyle = `rgb(${r}, ${g}, ${b})`;
+        ctx.stroke();
+    }
+
+    ctx.beginPath();
 
     window.addEventListener("resize", () => {
         canvas.height = window.innerHeight;
