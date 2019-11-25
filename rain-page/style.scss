@@ -1,3 +1,5 @@
+$text-color: rgb(255,250,250);
+
 html, body {
     margin: 0;
     padding: 0;
@@ -19,7 +21,7 @@ body {
 
 .text {
     text-align: center;
-    color: white;
+    color: $text-color;
     font-size: 1em;
     width: 100%;
     top: 55%;
