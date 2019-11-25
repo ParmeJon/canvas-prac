@@ -1,0 +1,25 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.text {
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    width: 100%;
+    top: 55%;
+    position: absolute;
+    margin: 0 auto;
+    display: block;
+}
