@@ -14,6 +14,10 @@ body {
   background-size: cover;
 }
 
+#canvas {
+  z-index: 2;
+}
+
 .text {
   text-align: center;
   color: white;
