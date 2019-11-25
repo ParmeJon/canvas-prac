@@ -11,10 +11,10 @@ window.addEventListener("load", event => {
   function RainDrop(x, y, opacity) {
     this.x = x;
     this.y = y;
-    this.l = Math.random() * 1;
+    this.l = Math.random();
     this.opacity = opacity;
-    this.speedX = -4 + Math.random() * 4 + 2;
-    this.speedY = Math.random() * 20 + 10;
+    this.speedX = -3 + Math.random() * 10 + 2;
+    this.speedY = Math.random() * 30 + 10;
   }
 
   for (let i = 0; i < rainDrops; i++) {
@@ -32,21 +32,21 @@ window.addEventListener("load", event => {
       ctx.stroke();
     }
     move();
-  }
+}
 
-  function move() {
+function move() {
     for (let i = 0; i < particlesArray.length; i++) {
-      let drop = particlesArray[i];
-      drop.x += drop.speedX;
-      drop.y += drop.speedY;
-      if (drop.x > width || drop.y > height) {
-        drop.x = Math.random() * width;
-        drop.y = -10;
-      }
+        let drop = particlesArray[i];
+        drop.x += drop.speedX;
+        drop.y += drop.speedY;
+        if (drop.x > width || drop.y > height) {
+            drop.x = Math.random() * width;
+            drop.y = -10;
+        }
     }
-  }
+}
 
-  setInterval(createRainDrops, 50);
+  setInterval(createRainDrops, 30);
 
   function clientResize(ev) {
     width = canvas.width = window.innerWidth;

@@ -24,8 +24,31 @@ body {
   font-size: 1em;
   width: 100%;
   top: 55%;
+  opacity: 0;
   position: absolute;
   margin: 0 auto;
   display: block;
+  -webkit-animation: fadeIn 2s ease-in;
+          animation: fadeIn 2s ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=style.css.map */
