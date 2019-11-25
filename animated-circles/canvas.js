@@ -2,8 +2,31 @@ window.addEventListener("load", () => {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
+    let mouse = {
+        x: undefined,
+        y: undefined
+    }
+    let maxRadius = 40;
+    let minRadius = 2;
+
+    const colorArray = [
+        '#ffaa33',
+        '#99fafa',
+        '#123faa',
+        '#131313',
+        '#432a1e',
+        '#123123'
+    ]
+
+    window.addEventListener('mousemove', () => {
+        console.log(event)
+        mouse.x = event.x
+        mouse.y = event.y
+    })
+
     canvas.addEventListener("click", drawCircle)
 
+    // Creates circle on click. 
     function drawCircle(e) {
         let radius = Math.random() * 45;
         let dx = (Math.random() - 0.5) * 3;
@@ -24,7 +47,9 @@ window.addEventListener("load", () => {
         this.dx = dx;
         this.dy = dy;
         this.radius = radius;
+        this.minRadius = radius;
         this.opacity = opacity;
+        this.color = colorArray[Math.floor(Math.random() * colorArray.length)]
 
         this.draw = function() {
             ctx.beginPath();
@@ -33,7 +58,8 @@ window.addEventListener("load", () => {
             ctx.strokeStyle = 'lightblue'
             ctx.stroke();
             // let opacity = Math.random()
-            ctx.fillStyle = `rgba(0,0,0,${this.opacity}`
+            // ctx.fillStyle = `rgba(0,0,0,${this.opacity}`
+            ctx.fillStyle = this.color;
             ctx.fill();
         }
 
@@ -62,20 +88,36 @@ window.addEventListener("load", () => {
             this.x += this.dx;
             this.pastY = this.y
             this.y += this.dy;
+
+            // interactivity
+            if (mouse.x - this.x < 50 && mouse.x - this.x > -50 
+                && mouse.y - this.y < 50 && mouse.y - this.y > -50) {
+                if (this.radius < maxRadius) {
+                    this.radius += 1;
+                }
+            } else if (this.radius > this.minRadius){
+                this.radius -= 1;
+            }
+
             this.draw();
         }
     }
 
-    const circleArray = [];
-
-    for (let i = 0; i < 100; i++) {
-        let radius = Math.random() * 45;
-        let x = Math.random() * (innerWidth - radius * 2) + radius;
-        let y = Math.random() * (innerHeight - radius * 2) + radius;
-        let dx = (Math.random() - 0.5) * 3;
-        let dy = (Math.random() - 0.5) * 3;
-        let opacity = Math.random()
-        circleArray.push(new Circle(x,y,dx,dy,radius, opacity))
+    let circleArray = [];
+    
+    function init() {
+        // Resets circle array everytime this is called.
+        circleArray = [];
+    
+        for (let i = 0; i < 100; i++) {
+            let radius = Math.random() * 3 + 1;
+            let x = Math.random() * (innerWidth - radius * 2) + radius;
+            let y = Math.random() * (innerHeight - radius * 2) + radius;
+            let dx = (Math.random() - 0.5) * 3;
+            let dy = (Math.random() - 0.5) * 3;
+            let opacity = Math.random()
+            circleArray.push(new Circle(x,y,dx,dy,radius, opacity))
+        }
     }
 
     function animate() {
@@ -88,10 +130,15 @@ window.addEventListener("load", () => {
             }
         }
     }
+
+    init()
     animate()
 
         window.addEventListener("resize", () => {
           canvas.height = window.innerHeight;
           canvas.width = window.innerWidth;
+
+        //   generate circles dynamically
+        init()
         });
 })
