@@ -32,6 +32,9 @@ window.addEventListener("load", event => {
       ctx.stroke();
     }
     move();
+    setTimeout(function() {
+        window.requestAnimationFrame(createRainDrops);
+    }, 20);
 }
 
 function move() {
@@ -46,7 +49,8 @@ function move() {
     }
 }
 
-  setInterval(createRainDrops, 30);
+//   setInterval(createRainDrops, 30);
+    window.requestAnimationFrame(createRainDrops);
 
   function clientResize(ev) {
     width = canvas.width = window.innerWidth;
