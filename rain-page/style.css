@@ -10,6 +10,12 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  position: relative;
 }
 
 #canvas {
