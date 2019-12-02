@@ -4,9 +4,7 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 body {
@@ -20,21 +18,32 @@ body {
     z-index: 2;
 }
 
+.section {
+    width: 80%;
+    position: relative;
+    margin: auto;
+    font-family: 'Monteserrat';
+    padding: 10px;
+}
+
 .text {
     text-align: center;
     color: $text-color;
-    font-size: 1em;
+    font-size: calc(100vw/20);
     width: 100%;
-    top: 55%;
+    top: 50%;
     opacity: 0;
     position: absolute;
     margin: 0 auto;
     display: block;
+    transform: translateY(-50%);
     // transition: all 1s ease-in;
     animation: fadeIn 2s ease-in;
     animation-fill-mode: forwards;
-
+    z-index: -5;
 }
+
+
 
 @keyframes fadeIn {
   from {opacity: 0;}
