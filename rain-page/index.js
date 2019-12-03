@@ -52,18 +52,6 @@ function move() {
 //   setInterval(createRainDrops, 30);
     window.requestAnimationFrame(createRainDrops);
 
-    const contentData = ['home', 'adventure', 'roads', 'wilderness', 'camp']
-    let i = 1
-    const changingSpan = document.getElementById('changing-content');
-    setInterval( function() {
-        if (i === contentData.length - 1) {
-            i = 0
-        }
-        changingSpan.innerHTML = contentData[i]
-        i++
-    }, 2000) 
-
-
   function clientResize(ev) {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
